@@ -1,0 +1,15 @@
+{% extends 'assets/base.html' %}
+
+{% block content %}
+    <main role="main" class="container">
+        <h1 class="mt-5">{{ title }}</h1>
+        <hr>
+        {% for title in titles.items %}
+            <a href="{{ url_for('entry.create', title=title.name) }}">{{ title.name }}</a>, by {{ title.entrys[-1].user.name }}, {{ title.entrys[-1].created_at }}
+            <hr>
+        {% endfor %}
+        {% if titles.has_prev %}<a href="{{ url_for('entry.index', page=titles.prev_num) }}">&lt;&lt; Newer Titles</a>{% else %}&lt;&lt; Newer Titles{% endif %}
+        |
+        {% if titles.has_next %}<a href="{{ url_for('entry.index', page=titles.next_num) }}">Older Titles &gt;&gt;</a>{% else %}Older Titles &gt;&gt;{% endif %}
+    </main>
+{% endblock %}

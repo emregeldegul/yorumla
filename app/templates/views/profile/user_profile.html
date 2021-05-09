@@ -1,0 +1,27 @@
+{% extends 'assets/base.html' %}
+
+{% block content %}
+    <main role="main" class="container">
+        <h1 class="mt-5"><img src="{{ user.avatar(50) }}" alt="">  {{ title }}</h1>
+        <hr>
+        {{ alert() }}
+        <div class="row">
+            <div class="col-md-6">
+                {% for entry in user.entrys %}
+                    <a href="{{ url_for('entry.create', title=entry.title.name) }}">{{ entry.title.name }}</a><br>
+                    {{ entry.content[:50] }} <br>
+                    &#8990; {{ entry.created_at }}
+                    <hr>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                {% for entry in user.entrys %}
+                    <a href="{{ url_for('entry.create', title=entry.title.name) }}">{{ entry.title.name }}</a><br>
+                    {{ entry.content[:50] }} <br>
+                    &#8990; {{ entry.created_at }}
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

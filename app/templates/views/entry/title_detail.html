@@ -1,0 +1,24 @@
+{% extends 'assets/base.html' %}
+
+{% block content %}
+    <main role="main" class="container">
+        <h1 class="mt-5">{{ title }}</h1>
+        <hr>
+        {{ alert() }}
+        {% for entry in entrys %}
+            {{ entry.content }}<br>
+            &#8990; <a href="{{ url_for('profile.user_profile', id=entry.user.id) }}">{{ entry.user.name }}</a>, {{ entry.created_at }}
+            <hr>
+        {% endfor %}
+        <form method="POST" action="">
+            {{ form.csrf_token() }}
+            <div class="form-group">
+                {{ form.entry.label() }}
+                {{ form.entry(class="form-control", rows=5) }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </main>
+{% endblock %}
